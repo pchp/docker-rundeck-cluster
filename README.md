@@ -7,7 +7,7 @@ Rundeck is an open source automation service with a web console, command line to
 * three commands ;)
 
 ```
-git clone https://github.com/remijouannet/docker-rundeck.git
+git clone https://github.com/pchp/docker-rundeck-cluster.git
 cd docker-rundeck
 docker-compose up
 ```
