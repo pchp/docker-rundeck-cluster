@@ -31,47 +31,48 @@ PASSWORD: admin #default password for the rundeck admin user
 
 
 ```
-mysql:
-    image: mysql:5.7
+mariaDb:
+    image: mariadb
     environment:
         MYSQL_DATABASE: rundeck
         MYSQL_USER: rundeck
-        MYSQL_PASSWORD: 641949548825f1f8c51d5f547ab88faa
-        MYSQL_RANDOM_ROOT_PASSWORD : 'true'
+        MYSQL_PASSWORD: 701d8d441eafc7023c9076125b5c4fcc82bc713f
+        MYSQL_ROOT_PASSWORD: 701d8d441eafc7023c9076125b5c4fcc82bc713f 
     volumes:
         - ./volume/mysql:/var/lib/mysql
+    ports:
+        - "3306:3306"
 rundeck1:
     build: .
     environment:
         MYSQL_DATABASE: rundeck
         MYSQL_USER: rundeck
-        MYSQL_PASSWORD: 641949548825f1f8c51d5f547ab88faa
+        MYSQL_PASSWORD: 701d8d441eafc7023c9076125b5c4fcc82bc713f
         HOST_RUNDECK: localhost
         SERVER_URL: https://localhost:4443
         PASSWORD: admin
     ports:
         - "4443:4443"
     links:
-        - mysql
+        - mariadb
     volumes:
         - ./volume/etc1:/etc/rundeck
         - ./volume/rundeck:/var/rundeck
         - ./volume/lib:/var/lib/rundeck
         - ./volume/log:/var/log/rundeck
-
 rundeck2:
     build: .
     environment:
         MYSQL_DATABASE: rundeck
         MYSQL_USER: rundeck
-        MYSQL_PASSWORD: 641949548825f1f8c51d5f547ab88faa
+        MYSQL_PASSWORD: 701d8d441eafc7023c9076125b5c4fcc82bc713f
         HOST_RUNDECK: localhost
         SERVER_URL: https://localhost:4442
         PASSWORD: admin
     ports:
         - "4442:4443"
     links:
-        - mysql
+        - mariadb
     volumes:
         - ./volume/etc2:/etc/rundeck
         - ./volume/rundeck:/var/rundeck
