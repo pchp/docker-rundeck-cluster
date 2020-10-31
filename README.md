@@ -1,4 +1,4 @@
-# docker-rundeck
+# docker-rundeck-cluster
 
 Rundeck is an open source automation service with a web console, command line tools and a WebAPI. It lets you easily run automation tasks across a set of nodes.
 
