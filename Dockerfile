@@ -1,14 +1,14 @@
 # Dockerfile for rundeck
 
-FROM debian:jessie
+FROM debian:stable
 
-MAINTAINER Rémi Jouannet "remijouannet@gmail.com"
+MAINTAINER Pascal Chenevas-Paule "https://github.com/pcp"
 
 RUN apt-get update
-RUN apt-get install -y bash ca-certificates openjdk-7-jre-headless mysql-client
+RUN apt-get install -y bash ca-certificates openjdk-11-jdk-jre-headless mariadb-client
 RUN apt-get install -y openssh-client pwgen curl git vim uuid-runtime
 
-ADD http://dl.bintray.com/rundeck/rundeck-deb/rundeck-2.6.7-1-GA.deb /tmp/rundeck.deb
+ADD http://dl.bintray.com/rundeck/rundeck-deb/:rundeck_3.3.5.20201019-1_all.deb /tmp/rundeck.deb
 COPY . /app
 WORKDIR /app
 RUN useradd -d /var/lib/rundeck -s /bin/false rundeck
