@@ -1,5 +1,5 @@
-mysql:
-    image: mysql:5.7
+mariaDb:
+    image: mariadb
     environment:
         MYSQL_DATABASE: rundeck
         MYSQL_USER: rundeck
@@ -21,7 +21,7 @@ rundeck1:
     ports:
         - "4443:4443"
     links:
-        - mysql
+        - mariadb
     volumes:
         - ./volume/etc1:/etc/rundeck
         - ./volume/rundeck:/var/rundeck
@@ -39,7 +39,7 @@ rundeck2:
     ports:
         - "4442:4443"
     links:
-        - mysql
+        - mariadb
     volumes:
         - ./volume/etc2:/etc/rundeck
         - ./volume/rundeck:/var/rundeck
